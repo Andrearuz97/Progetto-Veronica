@@ -289,74 +289,93 @@
         </div>
 
         <div class="contact-form-wrapper">
-          <form id="contact-form" class="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="nome">Nome</label>
-                <input
-                  type="text"
-                  id="nome"
-                  name="nome"
-                  placeholder="Il tuo nome"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="nome@esempio.com"
-                  required
-                />
-              </div>
-            </div>
+<form 
+  id="contact-form"
+  class="contact-form"
+  action="https://formsubmit.co/a2a3ab24372fa0b10ff8513220573eaf"
+  method="POST"
+>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="telefono">Telefono</label>
-                <input
-                  type="tel"
-                  id="telefono"
-                  name="telefono"
-                  placeholder="+39 ..."
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="servizio">Servizio di interesse</label>
-                <select id="servizio" name="servizio" required>
-                  <option value="">Seleziona un'opzione</option>
-                  <option value="appartamenti">Pulizia appartamenti</option>
-                  <option value="uffici">Pulizia uffici</option>
-                  <option value="condomini">Condomini & spazi comuni</option>
-                  <option value="sanificazioni">Sanificazioni</option>
-                </select>
-              </div>
-            </div>
+  <!-- Configurazione FormSubmit -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="Nuovo contatto dal sito Dea Cleaning">
 
-            <div class="form-group">
-              <label for="messaggio">Messaggio</label>
-              <textarea
-                id="messaggio"
-                name="messaggio"
-                rows="4"
-                placeholder="Descrivi le tue esigenze..."
-                required
-              ></textarea>
-            </div>
+  <!-- Redirect dopo invio -->
+  <input 
+    type="hidden"
+    name="_next"
+    value="http://127.0.0.1:5500/grazie.html"
+  />
 
-            <button type="submit" class="btn btn-primary btn-full">
-              Invia richiesta
-            </button>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        placeholder="Il tuo nome"
+        required
+      />
+    </div>
 
-            <p id="form-message" class="form-message" aria-live="polite"></p>
-            <p class="form-note">
-              I tuoi dati verranno utilizzati solo per rispondere alla tua
-              richiesta di contatto.
-            </p>
-          </form>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="nome@esempio.com"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="telefono">Telefono</label>
+      <input
+        type="tel"
+        id="telefono"
+        name="telefono"
+        placeholder="+39 ..."
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="servizio">Servizio di interesse</label>
+      <select id="servizio" name="servizio" required>
+        <option value="">Seleziona un'opzione</option>
+        <option value="appartamenti">Pulizia appartamenti</option>
+        <option value="uffici">Pulizia uffici</option>
+        <option value="condomini">Condomini & spazi comuni</option>
+        <option value="sanificazioni">Sanificazioni</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="messaggio">Messaggio</label>
+    <textarea
+      id="messaggio"
+      name="messaggio"
+      rows="4"
+      placeholder="Descrivi le tue esigenze..."
+      required
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-full">
+    Invia richiesta
+  </button>
+
+  <p class="form-note">
+    I tuoi dati verranno utilizzati solo per rispondere alla tua richiesta di contatto.
+  </p>
+
+</form>
+
         </div>
       </div>
     </section>
@@ -364,12 +383,32 @@
     <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-content">
+        <div class="footer-social">
+  <p class="footer-social-title">Restiamo in contatto</p>
+  <div class="footer-social-icons">
+    <a href="https://wa.me/393000000000" target="_blank" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+  </div>
+</div>
+
         <p>© <span id="year"></span> Dea Cleaning Srls. Tutti i diritti riservati.</p>
         <p class="footer-small">
           P.IVA 03021720903
         </p>
       </div>
     </footer>
+<a href="https://wa.me/393000000000" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
     <script src="./script/script.js" defer></script>
   </body>
