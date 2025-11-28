@@ -866,3 +866,26 @@ body {
 .footer {
   margin-top: auto;
 }
+/* Assicuro che tutti i campi del form usino il 100% della larghezza disponibile */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Miglioro il layout su mobile per la sezione contatti */
+@media (max-width: 720px) {
+  .contact {
+    display: block;          /* invece della grid, così non rischia strani adattamenti */
+  }
+
+  .contact-info {
+    margin-bottom: 20px;     /* un po' di spazio sotto il blocco info */
+  }
+
+  .contact-form-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+}
