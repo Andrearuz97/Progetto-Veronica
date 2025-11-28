@@ -43,30 +43,6 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// Scroll morbido con offset per la navbar sticky
-/*document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (e) => {
-    const targetId = link.getAttribute("href");
-    const targetEl = document.querySelector(targetId);
-
-    if (targetEl) {
-      e.preventDefault();
-
-      const header = document.querySelector(".header");
-      const headerHeight = header ? header.offsetHeight : 0;
-
-      const elementPosition =
-        targetEl.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - headerHeight - 1;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  });
-});
-*/
 // Effetto navbar on scroll
 window.addEventListener("scroll", () => {
   const header = document.querySelector(".header");
