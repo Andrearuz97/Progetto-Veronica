@@ -78,28 +78,20 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-
-  /* gradient più dolce e moderno */
   background: linear-gradient(
     to bottom,
     rgba(20, 20, 22, 0.92),
     rgba(5, 6, 8, 0.88)
   );
-
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.25);
 }
 
-
 .header.scrolled {
-  background: rgba(15, 15, 18, 0.94); /* non nera totale, più elegante */
+  background: rgba(15, 15, 18, 0.94);
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.23);
   border-bottom: 1px solid rgba(212, 175, 55, 0.35);
 }
-
-
-
-
 
 .nav-container {
   display: flex;
@@ -158,6 +150,50 @@ body {
 .nav-links a:hover {
   color: var(--primary);
   transform: translateY(-1px);
+}
+
+/* LANGUAGE SWITCH */
+.nav-lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.lang-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-lang a.lang-option {
+  color: var(--muted);
+}
+
+.nav-lang a.lang-option:hover {
+  color: var(--primary);
+}
+
+/* bandiere della libreria flag-icons */
+.nav-lang .fi {
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.lang-separator {
+  opacity: 0.6;
+}
+
+.nav-lang .active-lang {
+  color: var(--primary);
+  font-weight: 600;
 }
 
 /* Nav toggle (mobile) */
@@ -597,6 +633,7 @@ body {
   opacity: 0.7;
   margin-top: 4px;
 }
+
 .footer-social {
   text-align: center;
   margin-bottom: 18px;
@@ -625,83 +662,6 @@ body {
   transform: translateY(-2px);
 }
 
-
-/* RESPONSIVE */
-@media (max-width: 960px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-image {
-    order: 0;
-  }
-
-  .cards-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .features,
-  .about,
-  .contact {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-form .form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 720px) {
-  .nav-links {
-    position: fixed;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: rgba(15, 15, 18, 0.97);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 18px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    pointer-events: none;
-    max-height: 0;
-    overflow: hidden;
-    transform: translateY(-8px);
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease,
-      max-height 0.25s ease;
-  }
-
-  .nav-links.show {
-    opacity: 1;
-    pointer-events: auto;
-    max-height: 260px;
-    transform: translateY(0);
-  }
-
-  .nav-links a {
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .nav-toggle {
-    display: block;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding-top: 40px;
-  }
-
-  .hero-text h1 {
-    font-size: 2.1rem;
-  }
-}
 /* WHATSAPP FLOAT BUTTON */
 .whatsapp-float {
   position: fixed;
@@ -737,3 +697,172 @@ body {
   }
 }
 
+/* COOKIE BANNER */
+.cookie-banner {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 960px;
+  width: calc(100% - 32px);
+  background: rgba(5, 6, 8, 0.97);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  z-index: 200;
+  font-size: 0.85rem;
+}
+
+.cookie-banner p {
+  flex: 1;
+  margin: 0;
+  color: var(--muted);
+}
+
+.cookie-btn {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .cookie-banner {
+    align-items: flex-start;
+  }
+
+  .cookie-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image {
+    order: 0;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .features,
+  .about,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* MOBILE NAV + LINGUA */
+@media (max-width: 720px) {
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(15, 15, 18, 0.97);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 18px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      max-height 0.25s ease;
+  }
+
+  .nav-links.show {
+    opacity: 1;
+    pointer-events: auto;
+    max-height: 380px; /* più alto per includere lingua */
+    overflow-y: auto;  /* se sfora, scroll */
+    transform: translateY(0);
+  }
+
+  /* link del menu normale (Home, Services, ecc.) */
+  .nav-links > li > a:not(.lang-option) {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.1rem;
+  }
+
+  /* blocco lingua in fondo al menu */
+  .nav-lang {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    width: 100%;
+  }
+
+  .nav-lang .lang-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: auto;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-lang .fi {
+    display: inline-block;
+    width: 18px;
+    height: 12px;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* layout a colonna per avere il footer incollato in basso anche nelle pagine corte */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* il footer viene spinto verso il basso quando c'è poco contenuto */
+.footer {
+  margin-top: auto;
+}

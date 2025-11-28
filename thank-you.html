@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grazie - Dea Cleaning Srls</title>
+    <title>Thank you - Dea Cleaning Srls</title>
     <meta
       name="description"
-      content="Grazie per aver contattato Dea Cleaning Srls. Ti risponderemo il prima possibile."
+      content="Thank you for contacting Dea Cleaning Srls. We will get back to you as soon as possible."
     />
 
     <!-- Google Fonts -->
@@ -19,7 +19,6 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-..."
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -30,6 +29,7 @@
       href="https://cdn.jsdelivr.net/npm/flag-icons@6.7.0/css/flag-icons.min.css"
     />
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="./style/index.css" />
 
     <link rel="icon" type="image/png" href="./assets/img/Logo dea cleaning.jpg" />
@@ -41,7 +41,7 @@
         <div class="logo">
           <img
             src="./assets/img/Logo dea cleaning.jpg"
-            alt="Logo Dea Cleaning"
+            alt="Dea Cleaning logo"
             class="logo-img"
           />
           <span class="logo-text">Dea Cleaning Srls</span>
@@ -49,26 +49,26 @@
 
         <nav class="nav">
           <ul class="nav-links">
-            <li><a href="./index.html#home">Home</a></li>
-            <li><a href="./index.html#servizi">Servizi</a></li>
-            <li><a href="./index.html#chi-siamo">Chi siamo</a></li>
-            <li><a href="./index.html#contatti">Contatti</a></li>
+            <li><a href="./en.html#home">Home</a></li>
+            <li><a href="./en.html#servizi">Services</a></li>
+            <li><a href="./en.html#chi-siamo">About us</a></li>
+            <li><a href="./en.html#contatti">Contacts</a></li>
 
-            <!-- SWITCH LINGUA -->
+            <!-- LANGUAGE SWITCH (identico a IT) -->
             <li class="nav-lang">
-              <span class="lang-option active-lang">
-                <span class="fi fi-it" aria-hidden="true"></span>
+              <a href="./grazie.html" class="lang-option">
+                <span class="fi fi-it"></span>
                 <span>IT</span>
-              </span>
-              <span class="lang-separator">/</span>
-              <a href="./thank-you.html" class="lang-option">
-                <span class="fi fi-gb" aria-hidden="true"></span>
-                <span>EN</span>
               </a>
+              <span class="lang-separator">/</span>
+              <span class="lang-option active-lang">
+                <span class="fi fi-gb"></span>
+                <span>EN</span>
+              </span>
             </li>
           </ul>
 
-          <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+          <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
           </button>
         </nav>
@@ -79,23 +79,24 @@
     <section class="section">
       <div class="container" style="text-align: center; max-width: 640px;">
         <h1 style="font-size: 2.2rem; margin-bottom: 12px;">
-          Grazie per averci contattato
+          Thank you for contacting us
         </h1>
+
         <p style="color: var(--muted); margin-bottom: 20px;">
-          La tua richiesta è stata inviata correttamente.  
-          Ti risponderemo il prima possibile all’indirizzo email che ci hai fornito.
+          Your request has been sent successfully.<br />
+          We will reply as soon as possible to the email address you provided.
         </p>
 
         <p style="color: var(--muted); margin-bottom: 28px;">
-          Nel frattempo puoi tornare alla homepage o scoprire meglio i nostri servizi.
+          In the meantime, you can return to the homepage or discover our services.
         </p>
 
         <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-          <a href="./index.html" class="btn btn-primary">
-            Torna alla home
+          <a href="./en.html" class="btn btn-primary">
+            Back to home
           </a>
-          <a href="./index.html#servizi" class="btn btn-outline">
-            Vedi i servizi
+          <a href="./en.html#servizi" class="btn btn-outline">
+            View services
           </a>
         </div>
       </div>
@@ -105,26 +106,22 @@
     <footer class="footer">
       <div class="container footer-content">
         <div class="footer-social">
-          <p class="footer-social-title">Restiamo in contatto</p>
+          <p class="footer-social-title">Let’s keep in touch</p>
           <div class="footer-social-icons">
             <a href="https://wa.me/393463238078" target="_blank" aria-label="WhatsApp">
               <i class="fa-brands fa-whatsapp"></i>
             </a>
-
             <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
               <i class="fa-brands fa-instagram"></i>
             </a>
-
             <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
               <i class="fa-brands fa-facebook-f"></i>
             </a>
           </div>
         </div>
 
-        <p>© <span id="year"></span> Dea Cleaning Srls. Tutti i diritti riservati.</p>
-        <p class="footer-small">
-          P.IVA 03021720903
-        </p>
+        <p>© <span id="year"></span> Dea Cleaning Srls. All rights reserved.</p>
+        <p class="footer-small">VAT no. 03021720903</p>
       </div>
     </footer>
 
@@ -138,14 +135,14 @@
       <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- COOKIE BANNER IT -->
+    <!-- COOKIE BANNER -->
     <div class="cookie-banner" id="cookie-banner">
       <p>
-        Questo sito utilizza solo cookie tecnici ed eventualmente servizi di terze parti
-        (es. Google Maps). Proseguendo la navigazione accetti l’uso dei cookie.
+        This site uses only technical cookies and possibly third-party services
+        (e.g. Google Maps). By continuing to browse, you accept the use of cookies.
       </p>
       <button class="btn cookie-btn" id="cookie-accept">
-        Ho capito
+        Got it
       </button>
     </div>
 
