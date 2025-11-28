@@ -43,7 +43,7 @@
     <!-- HEADER / NAVBAR -->
     <header class="header">
       <div class="container nav-container">
-        <div class="logo">
+        <div class="logo" data-animate="fade-up">
           <img
             src="./assets/img/Logo dea cleaning.jpg"
             alt="Dea Cleaning logo"
@@ -55,9 +55,10 @@
         <nav class="nav">
           <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#servizi">Services</a></li>
-            <li><a href="#chi-siamo">About us</a></li>
-            <li><a href="#contatti">Contacts</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how-we-work">How we work</a></li>
+            <li><a href="#about-us">About us</a></li>
+            <li><a href="#contacts">Contacts</a></li>
 
             <!-- LANGUAGE SWITCH (single, desktop + mobile, with flags as font) -->
             <li class="nav-lang">
@@ -87,10 +88,9 @@
     <!-- HERO -->
     <section id="home" class="hero">
       <div class="container hero-content">
-        <div class="hero-text">
+        <div class="hero-text" data-animate="fade-up">
           <p class="hero-kicker">
-            Professional cleaning company in San Teodoro, Olbia and surrounding
-            areas
+            Professional cleaning company in San Teodoro, Olbia and surrounding areas
           </p>
 
           <h1>
@@ -106,10 +106,10 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#contatti" class="btn btn-primary">
+            <a href="#contacts" class="btn btn-primary">
               Request a free quote
             </a>
-            <a href="#servizi" class="btn btn-outline">See all services</a>
+            <a href="#services" class="btn btn-outline">See all services</a>
           </div>
 
           <div class="hero-badges">
@@ -125,7 +125,7 @@
           </div>
         </div>
 
-        <div class="hero-image">
+        <div class="hero-image" data-animate="fade-up" data-delay="1">
           <div
             class="hero-image-box"
             style="background-image: url('./assets/img/Dea-cleaning-nero.jpg')"
@@ -139,9 +139,9 @@
     </section>
 
     <!-- SERVICES -->
-    <section id="servizi" class="section">
+    <section id="services" class="section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-animate="fade-up">
           <h2>Our services</h2>
           <p>
             Tailor-made solutions for holiday apartments, villas, private homes
@@ -150,7 +150,7 @@
         </div>
 
         <div class="cards-grid">
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="0">
             <div class="card-icon">
               <i class="fa-solid fa-spray-can-sparkles"></i>
             </div>
@@ -162,7 +162,7 @@
             </p>
           </article>
 
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="1">
             <div class="card-icon">
               <i class="fa-solid fa-umbrella-beach"></i>
             </div>
@@ -174,7 +174,7 @@
             </p>
           </article>
 
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="2">
             <div class="card-icon">
               <i class="fa-solid fa-person-digging"></i>
             </div>
@@ -186,7 +186,7 @@
             </p>
           </article>
 
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="3">
             <div class="card-icon">
               <i class="fa-solid fa-chart-line"></i>
             </div>
@@ -202,10 +202,61 @@
       </div>
     </section>
 
+    <!-- HOW WE WORK -->
+    <section id="how-we-work" class="section section-alt section-process">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <h2>How we work</h2>
+          <p>
+            A simple and transparent process, designed so you always find everything clean,
+            tidy and ready to use.
+          </p>
+        </div>
+
+        <div class="process-steps">
+          <article class="process-step" data-animate="fade-up" data-delay="0">
+            <div class="process-icon">
+              <span class="process-number">1</span>
+              <i class="fa-solid fa-house-circle-check"></i>
+            </div>
+            <h3>Free on-site inspection</h3>
+            <p>
+              We collect the basic information and schedule an on-site inspection
+              to assess spaces, frequency of cleaning and specific needs.
+            </p>
+          </article>
+
+          <article class="process-step" data-animate="fade-up" data-delay="1">
+            <div class="process-icon">
+              <span class="process-number">2</span>
+              <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <h3>Clear quote</h3>
+            <p>
+              We provide a detailed and tailored quote, with no hidden costs,
+              based on the type of property and your priorities.
+            </p>
+          </article>
+
+          <article class="process-step" data-animate="fade-up" data-delay="2">
+            <div class="process-icon">
+              <span class="process-number">3</span>
+              <i class="fa-solid fa-broom-ball"></i>
+            </div>
+            <h3>Professional cleaning</h3>
+            <p>
+              We schedule the work at the most convenient times for you and take care
+              of everything: cleaning, sanitizing and final check of all areas.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY CHOOSE US -->
     <section class="section section-alt">
       <div class="container features">
-        <div class="features-text">
+        <div class="features-text" data-animate="fade-up">
           <h2>Why choose Dea Cleaning Srls</h2>
           <p>
             Entrusting your home, a villa or a holiday apartment to someone is a
@@ -229,7 +280,7 @@
           </ul>
         </div>
 
-        <div class="features-boxes">
+        <div class="features-boxes" data-animate="fade-up" data-delay="1">
           <div class="mini-card">
             <span class="mini-card-number">10+</span>
             <span class="mini-card-label">Happy clients</span>
@@ -247,9 +298,9 @@
     </section>
 
     <!-- REVIEWS -->
-    <section class="section" id="recensioni">
+    <section class="section" id="reviews">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-animate="fade-up">
           <h2>What our clients say</h2>
           <p>
             Some real reviews collected online and from our regular clients.
@@ -257,7 +308,7 @@
         </div>
 
         <div class="cards-grid">
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="0">
             <div class="card-icon">
               <i class="fa-solid fa-star"></i>
             </div>
@@ -270,7 +321,7 @@
             <p class="mini-card-label">– Property owner, San Teodoro</p>
           </article>
 
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="1">
             <div class="card-icon">
               <i class="fa-solid fa-star"></i>
             </div>
@@ -283,7 +334,7 @@
             <p class="mini-card-label">– Private client, Olbia</p>
           </article>
 
-          <article class="card">
+          <article class="card" data-animate="fade-up" data-delay="2">
             <div class="card-icon">
               <i class="fa-solid fa-star"></i>
             </div>
@@ -300,8 +351,8 @@
     </section>
 
     <!-- ABOUT US -->
-    <section id="chi-siamo" class="section">
-      <div class="container about">
+    <section id="about-us" class="section">
+      <div class="container about" data-animate="fade-up">
         <div class="about-text">
           <h2>About us</h2>
           <p>
@@ -311,9 +362,9 @@
           </p>
           <p>
             We personally follow each client, from the first contact to the site
-            inspection, up to defining the most suitable intervention plan for
-            their needs, whether it is a private home, a holiday apartment or an
-            exclusive villa.
+            inspection, up to defining the most suitable plan for their needs,
+            whether it is a private home, a holiday apartment or an exclusive
+            villa.
           </p>
           <p>
             We work with professional products and adequate equipment, fully
@@ -341,8 +392,8 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contatti" class="section section-alt">
-      <div class="container contact">
+    <section id="contacts" class="section section-alt">
+      <div class="container contact" data-animate="fade-up">
         <div class="contact-info">
           <h2>Contact us</h2>
           <p>
@@ -476,7 +527,7 @@
 
     <!-- MAP -->
     <section class="section">
-      <div class="container">
+      <div class="container" data-animate="fade-up">
         <div class="section-header">
           <h2>Where we are</h2>
           <p>
@@ -504,7 +555,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      <div class="container footer-content">
+      <div class="container footer-content" data-animate="fade-up">
         <div class="footer-social">
           <p class="footer-social-title">Let’s keep in touch</p>
           <div class="footer-social-icons">
@@ -536,7 +587,8 @@
 
         <p>© <span id="year"></span> Dea Cleaning Srls. All rights reserved.</p>
         <p class="footer-small">VAT no. 03021720903</p>
-        <!-- 🔥 NUOVA SEZIONE LEGAL -->
+
+        <!-- LEGAL SECTION -->
         <div class="footer-legal">
           <a href="./privacy-en.html">Privacy Policy</a>
           <span class="separator">•</span>
@@ -554,6 +606,16 @@
     >
       <i class="fa-brands fa-whatsapp"></i>
     </a>
+
+    <!-- Back to top button -->
+    <button
+      type="button"
+      class="back-to-top"
+      id="back-to-top"
+      aria-label="Back to top"
+    >
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <!-- COOKIE BANNER EN -->
     <div class="cookie-banner" id="cookie-banner">

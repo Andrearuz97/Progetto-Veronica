@@ -37,13 +37,7 @@ if (navToggle && navLinks) {
   });
 }
 
-// Anno nel footer
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
-
-// Effetto navbar on scroll
+// Effetto navbar on scroll (glow oro come il footer)
 window.addEventListener("scroll", () => {
   const header = document.querySelector(".header");
   if (!header) return;
@@ -54,6 +48,55 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled");
   }
 });
+
+// Anno nel footer
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
+
+// ANIMAZIONI SU SCROLL (IntersectionObserver)
+const animatedEls = document.querySelectorAll("[data-animate]");
+
+if ("IntersectionObserver" in window && animatedEls.length > 0) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+    }
+  );
+
+  animatedEls.forEach((el) => observer.observe(el));
+} else {
+  // fallback: se il browser non supporta IntersectionObserver
+  animatedEls.forEach((el) => el.classList.add("is-visible"));
+}
+
+// BOTTONE TORNA SU
+const backToTop = document.getElementById("back-to-top");
+if (backToTop) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
 
 // COOKIE BANNER
 const cookieBanner = document.getElementById("cookie-banner");
