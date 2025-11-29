@@ -1078,3 +1078,117 @@ section {
     bottom: 88px;
   }
 }
+/* ===========================
+   RECENSIONI - CAROSELLO
+   =========================== */
+
+.reviews-carousel {
+  position: relative;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 48px; /* spazio per le frecce sotto */
+}
+
+.reviews-track-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.reviews-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+/* Ogni slide occupa tutta la larghezza (mobile + desktop) */
+.review-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Frecce – versione unica per TUTTI i device: sotto la card */
+.reviews-arrow {
+  position: absolute;
+  top: auto;
+  bottom: 10px;                 /* frecce sotto la slide */
+  transform: translateY(0);      /* niente centro verticale */
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 2;
+}
+
+.reviews-arrow i {
+  font-size: 0.9rem;
+}
+
+/* Posizione orizzontale delle frecce (centrare rispetto alla card) */
+.reviews-prev {
+  left: 25%;
+}
+
+.reviews-next {
+  right: 25%;
+}
+
+/* Hover solo dove ha senso (desktop / device con hover) */
+@media (hover: hover) {
+  .reviews-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+  }
+}
+
+/* Pallini */
+.reviews-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.reviews-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  background: var(--muted, #ccc);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease, width 0.2s ease;
+}
+
+.reviews-dot.active {
+  background: var(--primary, #00b894);
+  transform: scale(1.05);
+  width: 18px;
+}
+
+/* Un filo di respiro in più sulle card recensioni */
+.review-card p {
+  margin-bottom: 0.4rem;
+}
+
+/* Leggera differenza su schermi grandi (solo dimensione frecce / margine) */
+@media (min-width: 900px) {
+  .reviews-carousel {
+    margin-top: 40px;
+  }
+
+  .reviews-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}

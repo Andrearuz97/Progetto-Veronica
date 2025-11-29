@@ -145,3 +145,99 @@ if (cookieBanner && cookieAccept) {
     cookieBanner.style.display = "none";
   });
 }
+// ===========================
+// CAROSELLO RECENSIONI
+// ===========================
+(function () {
+  const carousel = document.querySelector('.reviews-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.reviews-track');
+  const slides = Array.from(carousel.querySelectorAll('.review-card'));
+  const prevBtn = carousel.querySelector('.reviews-prev');
+  const nextBtn = carousel.querySelector('.reviews-next');
+  const dotsContainer = carousel.querySelector('.reviews-dots');
+
+  if (!track || slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_DELAY = 6000; // 6 secondi
+
+  // Crea i pallini in base al numero di slide
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'reviews-dot';
+    dot.dataset.index = String(index);
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsContainer.querySelectorAll('.reviews-dot'));
+
+  function updateSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    currentIndex = index;
+    const offset = -index * 100;
+    track.style.transform = `translateX(${offset}%)`;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function goNext() {
+    updateSlide(currentIndex + 1);
+  }
+
+  function goPrev() {
+    updateSlide(currentIndex - 1);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(goNext, AUTOPLAY_DELAY);
+  }
+
+  function userNavigate(fn) {
+    fn();
+    startAutoplay(); // reset autoplay dopo interazione
+  }
+
+  // Eventi frecce
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => userNavigate(goNext));
+  }
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => userNavigate(goPrev));
+  }
+
+  // Eventi pallini
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.dataset.index || '0');
+      userNavigate(() => updateSlide(idx));
+    });
+  });
+
+  // Pausa autoplay su hover (desktop) / long press mobile non ci interessa
+  carousel.addEventListener('mouseenter', () => {
+    stopAutoplay();
+  });
+  carousel.addEventListener('mouseleave', () => {
+    startAutoplay();
+  });
+
+  // Avvio
+  updateSlide(0);
+  startAutoplay();
+})();

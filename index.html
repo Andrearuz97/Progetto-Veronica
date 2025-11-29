@@ -204,7 +204,7 @@
       <div class="container hero-content">
         <div class="hero-text" data-animate="fade-up">
           <p class="hero-kicker">
-            Impresa di pulizie professionali a San Teodoro, Olbia e dintorni
+            Pulizie professionali e servizi di sanificazione per case vacanza e ambienti privati.
           </p>
 
           <h1>
@@ -416,7 +416,7 @@
       </div>
     </section>
 
-    <!-- RECENSIONI -->
+      <!-- RECENSIONI -->
     <section class="section" id="recensioni">
       <div class="container">
         <div class="section-header" data-animate="fade-up">
@@ -427,50 +427,81 @@
           </p>
         </div>
 
-        <div class="cards-grid">
-          <article class="card" data-animate="fade-up" data-delay="0">
-            <div class="card-icon">
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <h3>Appartamento turistico a San Teodoro</h3>
-            <p>
-              «Servizio puntuale e preciso, appartamento sempre perfetto ad ogni
-              cambio ospite. Clienti soddisfatti e zero pensieri sulla gestione
-              della pulizia.»
-            </p>
-            <p class="mini-card-label">– Proprietaria, San Teodoro</p>
-          </article>
+        <div class="reviews-carousel" data-animate="fade-up" data-delay="1">
+          <!-- Freccia sinistra -->
+          <button
+            class="reviews-arrow reviews-prev"
+            type="button"
+            aria-label="Recensione precedente"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
 
-          <article class="card" data-animate="fade-up" data-delay="1">
-            <div class="card-icon">
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <h3>Pulizia post cantiere</h3>
-            <p>
-              «Dopo la ristrutturazione la casa era piena di polvere e residui:
-              Dea Cleaning l’ha resa pronta da vivere in un’unica giornata.
-              Consigliatissimi.»
-            </p>
-            <p class="mini-card-label">– Cliente privato, Olbia</p>
-          </article>
+          <!-- Wrapper pista -->
+          <div class="reviews-track-wrapper">
+            <div class="reviews-track">
+              <!-- Slide 1 -->
+              <article class="card review-card">
+                <div class="card-icon">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <h3>Appartamento turistico a San Teodoro</h3>
+                <p>
+                  «Servizio puntuale e preciso, appartamento sempre perfetto ad ogni
+                  cambio ospite. Clienti soddisfatti e zero pensieri sulla gestione
+                  della pulizia.»
+                </p>
+                <p class="mini-card-label">– Proprietaria, San Teodoro</p>
+              </article>
 
-          <article class="card" data-animate="fade-up" data-delay="2">
-            <div class="card-icon">
-              <i class="fa-solid fa-star"></i>
+              <!-- Slide 2 -->
+              <article class="card review-card">
+                <div class="card-icon">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <h3>Pulizia post cantiere</h3>
+                <p>
+                  «Dopo la ristrutturazione la casa era piena di polvere e residui:
+                  Dea Cleaning l’ha resa pronta da vivere in un’unica giornata.
+                  Consigliatissimi.»
+                </p>
+                <p class="mini-card-label">– Cliente privato, Olbia</p>
+              </article>
+
+              <!-- Slide 3 -->
+              <article class="card review-card">
+                <div class="card-icon">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <h3>Gestione villa per affitti brevi</h3>
+                <p>
+                  «Occupandosi di pulizie, controllo e piccoli interventi, posso
+                  affittare con continuità senza essere sul posto. Un supporto
+                  fondamentale per la rendita della proprietà.»
+                </p>
+                <p class="mini-card-label">
+                  – Proprietario villa, Costa nord Sardegna
+                </p>
+              </article>
             </div>
-            <h3>Gestione villa per affitti brevi</h3>
-            <p>
-              «Occupandosi di pulizie, controllo e piccoli interventi, posso
-              affittare con continuità senza essere sul posto. Un supporto
-              fondamentale per la rendita della proprietà.»
-            </p>
-            <p class="mini-card-label">
-              – Proprietario villa, Costa nord Sardegna
-            </p>
-          </article>
+          </div>
+
+          <!-- Freccia destra -->
+          <button
+            class="reviews-arrow reviews-next"
+            type="button"
+            aria-label="Recensione successiva"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <!-- Pallini -->
+          <div class="reviews-dots" aria-label="Seleziona recensione"></div>
         </div>
       </div>
     </section>
+
+
 
     <!-- CHI SIAMO -->
     <section id="chi-siamo" class="section">
