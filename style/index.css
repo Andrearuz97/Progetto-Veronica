@@ -1,13 +1,21 @@
 :root {
   /* Palette coerente col logo Dea Cleaning (nero + oro) */
-  --primary: #d4af37;        /* oro principale */
-  --primary-dark: #a88317;   /* oro più scuro */
-  --accent: #f1d27a;         /* oro chiaro per dettagli */
-  --bg: #050608;             /* sfondo generale scuro */
-  --surface: #111217;        /* card, header, box */
-  --surface-alt: #161822;    /* sezioni alternate */
-  --text: #f7f5f0;           /* testo principale chiaro */
-  --muted: #c4b89a;          /* testo secondario */
+  --primary: #d4af37;
+  /* oro principale */
+  --primary-dark: #a88317;
+  /* oro più scuro */
+  --accent: #f1d27a;
+  /* oro chiaro per dettagli */
+  --bg: #050608;
+  /* sfondo generale scuro */
+  --surface: #111217;
+  /* card, header, box */
+  --surface-alt: #161822;
+  /* sezioni alternate */
+  --text: #f7f5f0;
+  /* testo principale chiaro */
+  --muted: #c4b89a;
+  /* testo secondario */
   --white: #ffffff;
   --radius-lg: 16px;
   --radius-md: 10px;
@@ -49,7 +57,8 @@ body {
 
 /* margine per ancora con navbar sticky */
 section {
-  scroll-margin-top: 60px; /* header ~64px + margine di sicurezza */
+  scroll-margin-top: 60px;
+  /* header ~64px + margine di sicurezza */
 }
 
 /* UTILITY */
@@ -89,11 +98,9 @@ section {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(
-    to bottom,
-    rgba(20, 20, 22, 0.92),
-    rgba(5, 6, 8, 0.88)
-  );
+  background: linear-gradient(to bottom,
+      rgba(20, 20, 22, 0.92),
+      rgba(5, 6, 8, 0.88));
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.25);
 }
@@ -657,7 +664,8 @@ section {
   box-shadow: 0 -0px 20px rgba(212, 175, 55, 0.23);
   border-top: 1px solid rgba(212, 175, 55, 0.35);
   color: var(--muted);
-  margin-top: auto; /* spinge il footer in basso quando c'è poco contenuto */
+  margin-top: auto;
+  /* spinge il footer in basso quando c'è poco contenuto */
 }
 
 .footer-content {
@@ -849,13 +857,15 @@ section {
   .nav-links.show {
     opacity: 1;
     pointer-events: auto;
-    max-height: 380px; /* più alto per includere lingua */
-    overflow-y: auto;  /* se sfora, scroll */
+    max-height: 380px;
+    /* più alto per includere lingua */
+    overflow-y: auto;
+    /* se sfora, scroll */
     transform: translateY(0);
   }
 
   /* link del menu normale (Home, Servizi, ecc.) */
-  .nav-links > li > a:not(.lang-option) {
+  .nav-links>li>a:not(.lang-option) {
     display: block;
     width: 100%;
     padding: 10px 0;
@@ -925,6 +935,7 @@ section {
   width: 100%;
   max-width: 100%;
 }
+
 /* ========================= */
 /* ANIMAZIONI SU SCROLL      */
 /* ========================= */
@@ -945,12 +956,15 @@ section {
 [data-animate][data-delay="0"] {
   transition-delay: 0.0s;
 }
+
 [data-animate][data-delay="1"] {
   transition-delay: 0.08s;
 }
+
 [data-animate][data-delay="2"] {
   transition-delay: 0.16s;
 }
+
 [data-animate][data-delay="3"] {
   transition-delay: 0.24s;
 }
@@ -1037,7 +1051,8 @@ section {
 .back-to-top {
   position: fixed;
   right: 22px;
-  bottom: 92px; /* sopra al pulsante WhatsApp */
+  bottom: 92px;
+  /* sopra al pulsante WhatsApp */
   width: 44px;
   height: 44px;
   border-radius: 999px;
@@ -1081,6 +1096,7 @@ section {
     bottom: 88px;
   }
 }
+
 /* ===========================
    RECENSIONI - CAROSELLO
    =========================== */
@@ -1092,7 +1108,8 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding-bottom: 48px; /* spazio per le frecce sotto */
+  padding-bottom: 48px;
+  /* spazio per le frecce sotto */
 }
 
 .reviews-track-wrapper {
@@ -1115,8 +1132,10 @@ section {
 .reviews-arrow {
   position: absolute;
   top: auto;
-  bottom: 10px;                 /* frecce sotto la slide */
-  transform: translateY(0);      /* niente centro verticale */
+  bottom: 10px;
+  /* frecce sotto la slide */
+  transform: translateY(0);
+  /* niente centro verticale */
   border: none;
   background: rgba(0, 0, 0, 0.55);
   color: #fff;

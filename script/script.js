@@ -83,7 +83,11 @@ if ("IntersectionObserver" in window && animatedEls.length > 0) {
 const sections = document.querySelectorAll("section[id]");
 const navLinksAnchors = document.querySelectorAll(".nav-links a[href^='#']");
 
-if ("IntersectionObserver" in window && sections.length && navLinksAnchors.length) {
+if (
+  "IntersectionObserver" in window &&
+  sections.length &&
+  navLinksAnchors.length
+) {
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -149,14 +153,14 @@ if (cookieBanner && cookieAccept) {
 // CAROSELLO RECENSIONI
 // ===========================
 (function () {
-  const carousel = document.querySelector('.reviews-carousel');
+  const carousel = document.querySelector(".reviews-carousel");
   if (!carousel) return;
 
-  const track = carousel.querySelector('.reviews-track');
-  const slides = Array.from(carousel.querySelectorAll('.review-card'));
-  const prevBtn = carousel.querySelector('.reviews-prev');
-  const nextBtn = carousel.querySelector('.reviews-next');
-  const dotsContainer = carousel.querySelector('.reviews-dots');
+  const track = carousel.querySelector(".reviews-track");
+  const slides = Array.from(carousel.querySelectorAll(".review-card"));
+  const prevBtn = carousel.querySelector(".reviews-prev");
+  const nextBtn = carousel.querySelector(".reviews-next");
+  const dotsContainer = carousel.querySelector(".reviews-dots");
 
   if (!track || slides.length === 0) return;
 
@@ -166,14 +170,14 @@ if (cookieBanner && cookieAccept) {
 
   // Crea i pallini in base al numero di slide
   slides.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'reviews-dot';
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "reviews-dot";
     dot.dataset.index = String(index);
     dotsContainer.appendChild(dot);
   });
 
-  const dots = Array.from(dotsContainer.querySelectorAll('.reviews-dot'));
+  const dots = Array.from(dotsContainer.querySelectorAll(".reviews-dot"));
 
   function updateSlide(index) {
     if (index < 0) index = slides.length - 1;
@@ -184,7 +188,7 @@ if (cookieBanner && cookieAccept) {
     track.style.transform = `translateX(${offset}%)`;
 
     dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
+      dot.classList.toggle("active", i === currentIndex);
     });
   }
 
@@ -215,25 +219,25 @@ if (cookieBanner && cookieAccept) {
 
   // Eventi frecce
   if (nextBtn) {
-    nextBtn.addEventListener('click', () => userNavigate(goNext));
+    nextBtn.addEventListener("click", () => userNavigate(goNext));
   }
   if (prevBtn) {
-    prevBtn.addEventListener('click', () => userNavigate(goPrev));
+    prevBtn.addEventListener("click", () => userNavigate(goPrev));
   }
 
   // Eventi pallini
   dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const idx = Number(dot.dataset.index || '0');
+    dot.addEventListener("click", () => {
+      const idx = Number(dot.dataset.index || "0");
       userNavigate(() => updateSlide(idx));
     });
   });
 
   // Pausa autoplay su hover (desktop) / long press mobile non ci interessa
-  carousel.addEventListener('mouseenter', () => {
+  carousel.addEventListener("mouseenter", () => {
     stopAutoplay();
   });
-  carousel.addEventListener('mouseleave', () => {
+  carousel.addEventListener("mouseleave", () => {
     startAutoplay();
   });
 
