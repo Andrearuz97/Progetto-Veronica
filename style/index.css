@@ -1054,8 +1054,12 @@ section {
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
-  transition: opacity 0.25s ease, transform 0.25s ease,
-    box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
   z-index: 998;
 }
 
@@ -1065,17 +1069,18 @@ section {
   transform: translateY(0);
 }
 
-/* Hover figo solo su dispositivi con hover vero (desktop) */
-@media (hover: hover) {
+/* 💻 Hover “figo” SOLO su desktop (mouse vero) */
+@media (hover: hover) and (pointer: fine) {
   .back-to-top:hover {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary));
     color: var(--bg);
     box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
+    transform: translateY(-2px);
   }
 }
 
-/* Su touch niente “hover appiccicato” */
-@media (hover: none) {
+/* 📱 Su touch niente hover appiccicato */
+@media (hover: none), (pointer: coarse) {
   .back-to-top:hover {
     background: rgba(5, 6, 8, 0.96);
     color: var(--primary);
@@ -1083,7 +1088,6 @@ section {
     transform: translateY(0);
   }
 }
-
 
 @media (max-width: 720px) {
   .back-to-top {
