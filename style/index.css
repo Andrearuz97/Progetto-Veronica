@@ -47,9 +47,9 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
 }
-#piva{
+
+#piva {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
@@ -153,6 +153,12 @@ section {
   font-size: 1.05rem;
   letter-spacing: 0.01em;
 }
+.logo {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 
 /* Nav links */
 .nav-links {
@@ -735,23 +741,20 @@ section {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 28px;
   box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
   z-index: 999;
   transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
-
   /* 🔥 FIX anti-linea fantasma */
   line-height: 0 !important;
   text-decoration: none;
 }
 
 .whatsapp-float i {
-  display: block;       /* elimina la baseline del font */
+  display: block; /* elimina la baseline del font */
   line-height: 0 !important;
   pointer-events: none; /* evita selezioni/tap strani */
 }
@@ -771,7 +774,6 @@ section {
     right: 18px;
   }
 }
-
 
 /* COOKIE BANNER */
 .cookie-banner {
@@ -1069,6 +1071,14 @@ section {
   transform: translateY(0);
 }
 
+/* stato attivo (tap/click) valido ovunque */
+.back-to-top:active {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: var(--bg);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
+  transform: translateY(-1px);
+}
+
 /* 💻 Hover “figo” SOLO su desktop (mouse vero) */
 @media (hover: hover) and (pointer: fine) {
   .back-to-top:hover {
@@ -1115,11 +1125,13 @@ section {
 .reviews-track {
   display: flex;
   transition: transform 0.5s ease;
-  cursor: grab; 
+  cursor: grab;
 }
-.reviews-track:active {  
+
+.reviews-track:active {
   cursor: grabbing;
 }
+
 .review-card {
   flex: 0 0 100%;
   max-width: 100%;
@@ -1220,20 +1232,7 @@ button,
   outline: none;
 }
 
-.reviews-arrow:focus,
-.reviews-arrow:active,
-.reviews-arrow:focus-visible,
-.reviews-dot:focus,
-.reviews-dot:active,
-.reviews-dot:focus-visible,
-.back-to-top:focus,
-.back-to-top:active,
-.back-to-top:focus-visible {
-  outline: none;
-  box-shadow: none;
-  background-image: none;
-}
-/* 🔥 KILL FOCUS RING SOLO SU CAROSELLO + BACK TO TOP + CAROSELLO CONTAINER */
+/* 🔥 KILL FOCUS RING SOLO SU CAROSELLO + (NO back-to-top qui) */
 
 /* niente outline sul container quando riceve focus (per le frecce tastiera) */
 .reviews-carousel:focus,
@@ -1241,24 +1240,20 @@ button,
   outline: none !important;
 }
 
-/* bottoni frecce, pallini e back-to-top */
+/* bottoni frecce, pallini (back-to-top escluso qui) */
 .reviews-arrow,
-.reviews-dot,
-.back-to-top {
+.reviews-dot {
   outline: none !important;
   box-shadow: none !important;
 }
 
-/* stati di focus/active/keyboard */
+/* stati di focus/active/keyboard per frecce e pallini (back-to-top escluso) */
 .reviews-arrow:focus,
 .reviews-arrow:active,
 .reviews-arrow:focus-visible,
 .reviews-dot:focus,
 .reviews-dot:active,
-.reviews-dot:focus-visible,
-.back-to-top:focus,
-.back-to-top:active,
-.back-to-top:focus-visible {
+.reviews-dot:focus-visible {
   outline: none !important;
   box-shadow: none !important;
   background-image: none !important;
@@ -1266,7 +1261,6 @@ button,
 
 /* fix extra bordo interno su Firefox */
 .reviews-arrow::-moz-focus-inner,
-.reviews-dot::-moz-focus-inner,
-.back-to-top::-moz-focus-inner {
+.reviews-dot::-moz-focus-inner {
   border: 0 !important;
 }
