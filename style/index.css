@@ -49,14 +49,16 @@ body {
   user-select: none;
 }
 
-/* 🔒 NIENTE SCROLL QUANDO IL MENU MOBILE È APERTO */
-@media (max-width: 720px) {
+/* NIENTE SCROLL QUANDO IL MENU MOBILE È APERTO */
+@media (max-width: 850px) {
   html.nav-open,
   body.nav-open {
     overflow: hidden;
-    height: 100vh;
+    /* niente height: 100%; così non salta più */
   }
 }
+
+
 
 #piva {
   -webkit-user-select: text;
@@ -853,7 +855,7 @@ section {
 }
 
 /* MOBILE NAV + LINGUA */
-@media (max-width: 720px) {
+@media (max-width: 850px) {
   .nav-links {
     position: fixed;
     top: 64px;
@@ -1078,8 +1080,7 @@ section {
   pointer-events: auto;
   transform: translateY(0);
 }
-
-/* 💛 Stato “tapped” (usato da JS per click/tap ovunque) */
+/* stato "tapped" gestito da JS → visibile anche su Android */
 .back-to-top.tapped {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: var(--bg);
@@ -1087,8 +1088,10 @@ section {
   transform: translateY(-1px);
 }
 
-/* stato attivo (tap/click) valido ovunque – fallback */
-.back-to-top:active {
+
+/* 🔥 Stato ATTIVO: vale anche su mobile (tap) */
+.back-to-top:active,
+.back-to-top:focus-visible {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: var(--bg);
   box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
@@ -1121,6 +1124,7 @@ section {
     bottom: 88px;
   }
 }
+
 
 /* RECENSIONI - CAROSELLO */
 .reviews-carousel {

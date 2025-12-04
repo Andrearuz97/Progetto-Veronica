@@ -3,15 +3,26 @@
 // ===========================
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
+const htmlEl = document.documentElement; // ⬅️ aggiunto
 
 if (navToggle && navLinks) {
   const toggleIcon = navToggle.querySelector("i");
 
+  const lockBodyScroll = () => {
+    // blocco scroll su HTML + BODY
+    htmlEl.classList.add("nav-open");
+    document.body.classList.add("nav-open");
+  };
+
+  const unlockBodyScroll = () => {
+    htmlEl.classList.remove("nav-open");
+    document.body.classList.remove("nav-open");
+  };
+
   const closeMenu = () => {
     navLinks.classList.remove("show");
     navToggle.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("nav-open");
-    document.documentElement.classList.remove("nav-open");
+    unlockBodyScroll();
     if (toggleIcon) {
       toggleIcon.classList.remove("fa-xmark");
       toggleIcon.classList.add("fa-bars");
@@ -28,11 +39,9 @@ if (navToggle && navLinks) {
     }
 
     if (isOpen) {
-      document.body.classList.add("nav-open");
-      document.documentElement.classList.add("nav-open");
+      lockBodyScroll();   // blocco scroll, ma NON tocco posizione/scrollTo
     } else {
-      document.body.classList.remove("nav-open");
-      document.documentElement.classList.remove("nav-open");
+      unlockBodyScroll(); // sblocco, nessun salto
     }
   });
 
@@ -43,7 +52,7 @@ if (navToggle && navLinks) {
     });
   });
 
-  // CHIUSURA MENU CLICCANDO FUORI
+    // CHIUSURA MENU CLICCANDO FUORI
   document.addEventListener("click", (e) => {
     const isMenuOpen = navLinks.classList.contains("show");
     if (!isMenuOpen) return;
@@ -56,13 +65,20 @@ if (navToggle && navLinks) {
     }
   });
 
+
+
   // Chiudi con ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      closeMenu();
+      const isMenuOpen = navLinks.classList.contains("show");
+      if (isMenuOpen) {
+        closeMenu();
+      }
     }
   });
 }
+
+
 
 // ===========================
 // NAVBAR SCROLL EFFECT
@@ -117,7 +133,11 @@ if ("IntersectionObserver" in window && animatedEls.length > 0) {
 const sections = document.querySelectorAll("section[id]");
 const navLinksAnchors = document.querySelectorAll(".nav-links a[href^='#']");
 
-if ("IntersectionObserver" in window && sections.length && navLinksAnchors.length) {
+if (
+  "IntersectionObserver" in window &&
+  sections.length &&
+  navLinksAnchors.length
+) {
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
