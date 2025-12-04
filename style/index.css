@@ -49,6 +49,15 @@ body {
   user-select: none;
 }
 
+/* 🔒 NIENTE SCROLL QUANDO IL MENU MOBILE È APERTO */
+@media (max-width: 720px) {
+  html.nav-open,
+  body.nav-open {
+    overflow: hidden;
+    height: 100vh;
+  }
+}
+
 #piva {
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -153,12 +162,12 @@ section {
   font-size: 1.05rem;
   letter-spacing: 0.01em;
 }
+
 .logo {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
 }
-
 
 /* Nav links */
 .nav-links {
@@ -748,15 +757,14 @@ section {
   box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
   z-index: 999;
   transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
-  /* 🔥 FIX anti-linea fantasma */
   line-height: 0 !important;
   text-decoration: none;
 }
 
 .whatsapp-float i {
-  display: block; /* elimina la baseline del font */
+  display: block;
   line-height: 0 !important;
-  pointer-events: none; /* evita selezioni/tap strani */
+  pointer-events: none;
 }
 
 .whatsapp-float:hover {
@@ -1071,7 +1079,15 @@ section {
   transform: translateY(0);
 }
 
-/* stato attivo (tap/click) valido ovunque */
+/* 💛 Stato “tapped” (usato da JS per click/tap ovunque) */
+.back-to-top.tapped {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: var(--bg);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
+  transform: translateY(-1px);
+}
+
+/* stato attivo (tap/click) valido ovunque – fallback */
 .back-to-top:active {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: var(--bg);
@@ -1231,8 +1247,6 @@ button,
 .back-to-top {
   outline: none;
 }
-
-/* 🔥 KILL FOCUS RING SOLO SU CAROSELLO + (NO back-to-top qui) */
 
 /* niente outline sul container quando riceve focus (per le frecce tastiera) */
 .reviews-carousel:focus,

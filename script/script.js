@@ -10,6 +10,8 @@ if (navToggle && navLinks) {
   const closeMenu = () => {
     navLinks.classList.remove("show");
     navToggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+    document.documentElement.classList.remove("nav-open");
     if (toggleIcon) {
       toggleIcon.classList.remove("fa-xmark");
       toggleIcon.classList.add("fa-bars");
@@ -23,6 +25,14 @@ if (navToggle && navLinks) {
     if (toggleIcon) {
       toggleIcon.classList.toggle("fa-bars", !isOpen);
       toggleIcon.classList.toggle("fa-xmark", isOpen);
+    }
+
+    if (isOpen) {
+      document.body.classList.add("nav-open");
+      document.documentElement.classList.add("nav-open");
+    } else {
+      document.body.classList.remove("nav-open");
+      document.documentElement.classList.remove("nav-open");
     }
   });
 
@@ -147,8 +157,17 @@ if (backToTop) {
     }
   });
 
+  // Effetto tap/click visibile ovunque (anche Android)
+  const addTapEffect = () => {
+    backToTop.classList.add("tapped");
+    setTimeout(() => {
+      backToTop.classList.remove("tapped");
+    }, 150);
+  };
+
   backToTop.addEventListener("click", (e) => {
     e.preventDefault();
+    addTapEffect();
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -323,7 +342,6 @@ if (cookieBanner && cookieAccept) {
       else goNext();
       startAutoplay();
     } else {
-      // trascinato poco → solo riavvio autoplay
       startAutoplay();
     }
   };
@@ -350,7 +368,6 @@ if (cookieBanner && cookieAccept) {
   };
 
   carousel.addEventListener("mouseenter", () => {
-    // quando il mouse è sopra il carosello → attivo tasti freccia
     window.addEventListener("keydown", handleKeydown);
     stopAutoplay();
   });
@@ -364,4 +381,3 @@ if (cookieBanner && cookieAccept) {
   updateSlide(0);
   startAutoplay();
 })();
-
