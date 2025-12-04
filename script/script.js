@@ -52,7 +52,7 @@ if (navToggle && navLinks) {
     });
   });
 
-    // CHIUSURA MENU CLICCANDO FUORI
+  // CHIUSURA MENU CLICCANDO FUORI
   document.addEventListener("click", (e) => {
     const isMenuOpen = navLinks.classList.contains("show");
     if (!isMenuOpen) return;
@@ -223,47 +223,86 @@ if (cookieBanner && cookieAccept) {
   if (!carousel) return;
 
   const track = carousel.querySelector(".reviews-track");
-  const slides = Array.from(carousel.querySelectorAll(".review-card"));
+  const originalSlides = Array.from(
+    carousel.querySelectorAll(".review-card")
+  );
   const prevBtn = carousel.querySelector(".reviews-prev");
   const nextBtn = carousel.querySelector(".reviews-next");
   const dotsContainer = carousel.querySelector(".reviews-dots");
 
-  if (!track || slides.length === 0) return;
+  if (!track || originalSlides.length === 0) return;
 
-  let currentIndex = 0;
+  const slideCount = originalSlides.length;
   let autoplayTimer = null;
   const AUTOPLAY_DELAY = 6000; // 6 secondi
 
-  // Crea i pallini in base al numero di slide
-  slides.forEach((_, index) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "reviews-dot";
-    dot.dataset.index = String(index);
-    dotsContainer.appendChild(dot);
-  });
+  // ===========================
+  // CLONI PER EFFETTO INFINITO
+  // ===========================
+  const firstClone = originalSlides[0].cloneNode(true);
+  const lastClone = originalSlides[slideCount - 1].cloneNode(true);
 
-  const dots = Array.from(dotsContainer.querySelectorAll(".reviews-dot"));
+  // Struttura finale nel DOM:
+  // [ lastClone, slide0, slide1, ..., slideN-1, firstClone ]
+  track.insertBefore(lastClone, originalSlides[0]);
+  track.appendChild(firstClone);
 
-  function updateSlide(index) {
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
+  const allSlides = Array.from(track.querySelectorAll(".review-card"));
 
-    currentIndex = index;
-    const offset = -index * 100;
+  // Indice corrente nei "tutti i slide" (allSlides)
+  // 0 = lastClone, 1 = slide reale 0, 2 = slide reale 1, ..., slideCount = slide reale N-1, slideCount+1 = firstClone
+  let currentIndex = 1; // partiamo dalla PRIMA slide reale
+
+  // ===========================
+  // PALLINI (uno per ogni slide reale)
+  // ===========================
+  if (dotsContainer) {
+    originalSlides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "reviews-dot";
+      dot.dataset.index = String(index);
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const dots = dotsContainer
+    ? Array.from(dotsContainer.querySelectorAll(".reviews-dot"))
+    : [];
+
+  // Aggiorna posizione carosello + pallini
+  function setPosition(animated = true) {
+    if (!animated) {
+      // disabilita momentaneamente la transition per "teletrasporti"
+      track.style.transition = "none";
+    }
+
+    const offset = -currentIndex * 100; // ogni slide = 100%
     track.style.transform = `translateX(${offset}%)`;
 
+    if (!animated) {
+      // forza reflow
+      void track.offsetWidth;
+      // rimetti la transition come da CSS
+      track.style.transition = "";
+    }
+
+    // indice reale per i pallini (0..slideCount-1)
+    const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+
     dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === currentIndex);
+      dot.classList.toggle("active", i === realIndex);
     });
   }
 
   function goNext() {
-    updateSlide(currentIndex + 1);
+    currentIndex += 1;
+    setPosition(true);
   }
 
   function goPrev() {
-    updateSlide(currentIndex - 1);
+    currentIndex -= 1;
+    setPosition(true);
   }
 
   function stopAutoplay() {
@@ -283,7 +322,26 @@ if (cookieBanner && cookieAccept) {
     startAutoplay(); // reset autoplay dopo interazione
   }
 
+  // ===========================
+  // GESTIONE "FINE / INIZIO" (WRAP)
+  // ===========================
+  track.addEventListener("transitionend", () => {
+    // Se siamo andati OLTRE l'ultima reale (sul clone della prima)
+    if (currentIndex === slideCount + 1) {
+      currentIndex = 1; // torna alla PRIMA reale
+      setPosition(false); // senza animazione visibile
+    }
+
+    // Se siamo andati PRIMA della prima reale (sul clone dell'ultima)
+    if (currentIndex === 0) {
+      currentIndex = slideCount; // vai all'ULTIMA reale
+      setPosition(false); // senza animazione visibile
+    }
+  });
+
+  // ===========================
   // Eventi frecce (bottoni)
+  // ===========================
   if (nextBtn) {
     nextBtn.addEventListener("click", () => userNavigate(goNext));
   }
@@ -291,11 +349,16 @@ if (cookieBanner && cookieAccept) {
     prevBtn.addEventListener("click", () => userNavigate(goPrev));
   }
 
+  // ===========================
   // Eventi pallini
+  // ===========================
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
-      const idx = Number(dot.dataset.index || "0");
-      userNavigate(() => updateSlide(idx));
+      const realIndex = Number(dot.dataset.index || "0");
+      userNavigate(() => {
+        currentIndex = realIndex + 1; // +1 perché 0 è il clone dell'ultima
+        setPosition(true);
+      });
     });
   });
 
@@ -321,9 +384,8 @@ if (cookieBanner && cookieAccept) {
     const dx = touch.clientX - touchStartX;
     const dy = touch.clientY - touchStartY;
 
-    // Swipe orizzontale netto
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      e.preventDefault(); // blocca scroll verticale mentre swipi
+      e.preventDefault();
 
       if (dx < 0) {
         userNavigate(goNext);
@@ -331,7 +393,7 @@ if (cookieBanner && cookieAccept) {
         userNavigate(goPrev);
       }
 
-      isTouchSwiping = false; // evita multiple slide
+      isTouchSwiping = false;
     }
   });
 
@@ -344,7 +406,7 @@ if (cookieBanner && cookieAccept) {
   // ===========================
   let mouseStartX = 0;
   let isDragging = false;
-  const DRAG_THRESHOLD = 40; // px minimi per cambiare slide
+  const DRAG_THRESHOLD = 40;
 
   const onMouseDown = (e) => {
     isDragging = true;
@@ -398,6 +460,7 @@ if (cookieBanner && cookieAccept) {
   });
 
   // Avvio iniziale
-  updateSlide(0);
+  setPosition(false); // vai alla prima reale senza animazione
   startAutoplay();
 })();
+
