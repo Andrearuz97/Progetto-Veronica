@@ -1144,6 +1144,19 @@ section {
   max-width: 100%;
 }
 
+/* Fix hover card dentro il carosello: niente salto verso l'alto */
+.reviews-carousel .card {
+  /* stessa base della .card normale, ma senza trasformazioni di hover */
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.reviews-carousel .card:hover {
+  transform: none; /* niente translateY, così il bordo non viene tagliato */
+  box-shadow: var(--shadow-soft);
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+
 /* Frecce */
 .reviews-arrow {
   position: absolute;
