@@ -39,7 +39,7 @@ if (navToggle && navLinks) {
     }
 
     if (isOpen) {
-      lockBodyScroll();   // blocco scroll, ma NON tocco posizione/scrollTo
+      lockBodyScroll(); // blocco scroll, ma NON tocco posizione/scrollTo
     } else {
       unlockBodyScroll(); // sblocco, nessun salto
     }
@@ -65,8 +65,6 @@ if (navToggle && navLinks) {
     }
   });
 
-
-
   // Chiudi con ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
@@ -77,8 +75,6 @@ if (navToggle && navLinks) {
     }
   });
 }
-
-
 
 // ===========================
 // NAVBAR SCROLL EFFECT
@@ -190,7 +186,6 @@ if (backToTop) {
   });
 }
 
-
 // ===========================
 // COOKIE BANNER
 // ===========================
@@ -230,7 +225,7 @@ if (cookieBanner && cookieAccept) {
   const slideCount = originalSlides.length;
   let autoplayTimer = null;
   const AUTOPLAY_DELAY = 6000; // 6 secondi
-  let isAnimating = false;     // ⬅️ blocco durante animazione
+  let isAnimating = false; // blocco durante animazione
 
   // ===========================
   // CLONI PER EFFETTO INFINITO
@@ -275,11 +270,11 @@ if (cookieBanner && cookieAccept) {
     track.style.transform = `translateX(${offset}%)`;
 
     if (!animated) {
-      void track.offsetWidth;  // forza reflow
+      void track.offsetWidth; // forza reflow
       track.style.transition = "";
     }
 
-    const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+    const realIndex = (currentIndex - 1 + slideCount) % slideCount;
 
     dots.forEach((dot, i) => {
       dot.classList.toggle("active", i === realIndex);
@@ -331,7 +326,7 @@ if (cookieBanner && cookieAccept) {
       setPosition(false);
     }
 
-    isAnimating = false; // ⬅️ sblocca alla fine dell’animazione
+    isAnimating = false; // sblocca alla fine dell’animazione
   });
 
   // ===========================
@@ -459,8 +454,9 @@ if (cookieBanner && cookieAccept) {
   setPosition(false); // vai alla prima reale senza animazione
   startAutoplay();
 })();
+
 // ===========================
-// FEEDBACK VISIVO CLICK (TUTTO) - VERSIONE "BLINDATA"
+// FEEDBACK VISIVO CLICK (TUTTO) - VERSIONE CON CONTROLLO MOVIMENTO
 // ===========================
 function attachPressedFeedback(selector) {
   const elements = document.querySelectorAll(selector);
@@ -468,8 +464,10 @@ function attachPressedFeedback(selector) {
 
   elements.forEach((el) => {
     let pressedTimeout = null;
-    let lastTouchTime = 0;          // per distinguere tap da click "finto" dopo il touch
-    const TOUCH_DELAY = 600;        // ms
+    let lastTouchTime = 0; // per distinguere il click "finto" dopo il touch
+    let isTouching = false; // sappiamo se il dito è giù
+    const TOUCH_DELAY = 600; // ms
+    const MOVE_TOLERANCE = 10; // px di tolleranza per considerare "uscito"
 
     const addPressed = () => {
       el.classList.add("is-pressed");
@@ -478,7 +476,7 @@ function attachPressedFeedback(selector) {
       if (pressedTimeout) clearTimeout(pressedTimeout);
       pressedTimeout = setTimeout(() => {
         el.classList.remove("is-pressed");
-      }, 250);
+      }, 300);
     };
 
     const removePressed = () => {
@@ -491,13 +489,43 @@ function attachPressedFeedback(selector) {
       "touchstart",
       () => {
         lastTouchTime = Date.now();
+        isTouching = true;
         addPressed();
       },
       { passive: true }
     );
 
-    el.addEventListener("touchend", removePressed);
-    el.addEventListener("touchcancel", removePressed);
+    // se col dito ESCO dal bottone → tolgo subito l'effetto
+    el.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!isTouching || !e.touches || e.touches.length === 0) return;
+
+        const touch = e.touches[0];
+        const rect = el.getBoundingClientRect();
+
+        const isOutside =
+          touch.clientX < rect.left - MOVE_TOLERANCE ||
+          touch.clientX > rect.right + MOVE_TOLERANCE ||
+          touch.clientY < rect.top - MOVE_TOLERANCE ||
+          touch.clientY > rect.bottom + MOVE_TOLERANCE;
+
+        if (isOutside) {
+          removePressed();
+        }
+      },
+      { passive: true }
+    );
+
+    el.addEventListener("touchend", () => {
+      isTouching = false;
+      removePressed();
+    });
+
+    el.addEventListener("touchcancel", () => {
+      isTouching = false;
+      removePressed();
+    });
 
     // MOUSE (desktop / eventuale mouse su tablet)
     el.addEventListener("mousedown", () => {
@@ -528,15 +556,12 @@ function attachPressedFeedback(selector) {
 attachPressedFeedback(
   ".footer-social-icons a, " +
     "#back-to-top, " +
-    ".btn, " +                 // tutti i bottoni (Richiedi preventivo, Invia richiesta, cookie ecc.)
-    ".nav-links a, " +         // link della navbar
-    ".whatsapp-float, " +      // bottone WhatsApp flottante
-    ".reviews-arrow, " +       // frecce del carosello
-    ".reviews-dot"             // pallini del carosello
+    ".btn, " + // tutti i bottoni (Richiedi preventivo, Invia richiesta, cookie ecc.)
+    ".nav-links a, " + // link della navbar
+    ".whatsapp-float, " + // bottone WhatsApp flottante
+    ".reviews-arrow, " + // frecce del carosello
+    ".reviews-dot" // pallini del carosello
 );
 
 // Effetto anche su link contatti e link legali nel footer
 attachPressedFeedback(".contact-list a, .footer-legal a");
-
-
-
