@@ -505,8 +505,60 @@ function attachPressedFeedback(selector) {
   });
 }
 
-// Applico l'effetto a social e freccia torna su
-attachPressedFeedback(".footer-social-icons a");
-attachPressedFeedback("#back-to-top");
+// ===========================
+// FEEDBACK VISIVO CLICK (TUTTI I TAP PRINCIPALI) - ANDROID FRIENDLY
+// ===========================
+function attachPressedFeedback(selector) {
+  const elements = document.querySelectorAll(selector);
+  if (!elements.length) return;
+
+  elements.forEach((el) => {
+    let pressedTimeout = null;
+
+    const addPressed = () => {
+      // se per qualche motivo era rimasta, la tolgo prima
+      el.classList.remove("is-pressed");
+      // aggiungo lo stato premuto
+      el.classList.add("is-pressed");
+
+      // sicurezza: la rimuovo comunque dopo 300ms
+      if (pressedTimeout) clearTimeout(pressedTimeout);
+      pressedTimeout = setTimeout(() => {
+        el.classList.remove("is-pressed");
+      }, 300);
+    };
+
+    const removePressed = () => {
+      if (pressedTimeout) clearTimeout(pressedTimeout);
+      el.classList.remove("is-pressed");
+    };
+
+    // Touch (mobile)
+    el.addEventListener(
+      "touchstart",
+      () => {
+        addPressed();
+      },
+      { passive: true }
+    );
+    el.addEventListener("touchend", removePressed);
+    el.addEventListener("touchcancel", removePressed);
+
+    // Mouse (desktop)
+    el.addEventListener("mousedown", addPressed);
+    el.addEventListener("mouseup", removePressed);
+    el.addEventListener("mouseleave", removePressed);
+  });
+}
+
+// ✅ Applico l'effetto a TUTTI i punti di interazione principali
+attachPressedFeedback(".footer-social-icons a"); // social footer
+attachPressedFeedback("#back-to-top");           // freccia su
+attachPressedFeedback(".whatsapp-float");        // bottone WhatsApp flottante
+attachPressedFeedback(".btn");                   // tutti i bottoni (Richiedi preventivo, Invia richiesta, ecc.)
+attachPressedFeedback(".nav-links a");           // link della navbar
+attachPressedFeedback(".contact-list a");        // telefono, email, indirizzo
+attachPressedFeedback(".logo");                  // logo in alto cliccabile
+
 
 
