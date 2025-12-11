@@ -1342,29 +1342,6 @@ button,
   }
 }
 
-/* 📱 FIX SPECIFICO ANDROID:
-   frecce carosello + link Privacy/Cookie
-   → se NON c'è .is-pressed, azzeriamo hover/active/focus su touch */
-@media (hover: none), (pointer: coarse) {
-  /* FRECCE CAROSELLO */
-  .reviews-arrow:hover:not(.is-pressed),
-  .reviews-arrow:active:not(.is-pressed),
-  .reviews-arrow:focus:not(.is-pressed) {
-    background: rgba(0, 0, 0, 0.55); /* stato base */
-    box-shadow: none;
-    transform: none;
-  }
-
-  /* LINK PRIVACY / COOKIE */
-  .footer-legal a:hover:not(.is-pressed),
-  .footer-legal a:active:not(.is-pressed),
-  .footer-legal a:focus:not(.is-pressed) {
-    opacity: 0.8;   /* stesso valore base della sezione */
-    transform: none;
-  }
-}
-
-
 /* 📱 Su dispositivi touch: neutralizziamo gli hover MA NON lo stato premuto */
 @media (hover: none), (pointer: coarse) {
   .nav-links a:hover:not(.is-pressed) {
