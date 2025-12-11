@@ -39,7 +39,7 @@ if (navToggle && navLinks) {
     }
 
     if (isOpen) {
-      lockBodyScroll(); // blocco scroll, ma NON tocco posizione/scrollTo
+      lockBodyScroll();   // blocco scroll, ma NON tocco posizione/scrollTo
     } else {
       unlockBodyScroll(); // sblocco, nessun salto
     }
@@ -456,7 +456,7 @@ if (cookieBanner && cookieAccept) {
 })();
 
 // ===========================
-// FEEDBACK VISIVO CLICK (TUTTO) - VERSIONE CON CONTROLLO MOVIMENTO
+// FEEDBACK VISIVO CLICK (TUTTO) - VERSIONE MIGLIORATA PER TOUCH
 // ===========================
 function attachPressedFeedback(selector) {
   const elements = document.querySelectorAll(selector);
@@ -464,10 +464,12 @@ function attachPressedFeedback(selector) {
 
   elements.forEach((el) => {
     let pressedTimeout = null;
-    let lastTouchTime = 0; // per distinguere il click "finto" dopo il touch
-    let isTouching = false; // sappiamo se il dito è giù
+    let lastTouchTime = 0; // per distinguere click "finto" dopo il touch
+    let isTouching = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
     const TOUCH_DELAY = 600; // ms
-    const MOVE_TOLERANCE = 10; // px di tolleranza per considerare "uscito"
+    const MOVE_CANCEL = 8;   // px: oltre questo, consideriamo scroll/drag
 
     const addPressed = () => {
       el.classList.add("is-pressed");
@@ -487,7 +489,12 @@ function attachPressedFeedback(selector) {
     // TOUCH (Android / iOS reali)
     el.addEventListener(
       "touchstart",
-      () => {
+      (e) => {
+        if (!e.touches || e.touches.length === 0) return;
+        const touch = e.touches[0];
+
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
         lastTouchTime = Date.now();
         isTouching = true;
         addPressed();
@@ -495,22 +502,17 @@ function attachPressedFeedback(selector) {
       { passive: true }
     );
 
-    // se col dito ESCO dal bottone → tolgo subito l'effetto
     el.addEventListener(
       "touchmove",
       (e) => {
         if (!isTouching || !e.touches || e.touches.length === 0) return;
 
         const touch = e.touches[0];
-        const rect = el.getBoundingClientRect();
+        const dx = Math.abs(touch.clientX - touchStartX);
+        const dy = Math.abs(touch.clientY - touchStartY);
 
-        const isOutside =
-          touch.clientX < rect.left - MOVE_TOLERANCE ||
-          touch.clientX > rect.right + MOVE_TOLERANCE ||
-          touch.clientY < rect.top - MOVE_TOLERANCE ||
-          touch.clientY > rect.bottom + MOVE_TOLERANCE;
-
-        if (isOutside) {
+        // se il dito si sposta "troppo", interpretiamo come scroll/cancel
+        if (dx > MOVE_CANCEL || dy > MOVE_CANCEL) {
           removePressed();
         }
       },
@@ -556,12 +558,19 @@ function attachPressedFeedback(selector) {
 attachPressedFeedback(
   ".footer-social-icons a, " +
     "#back-to-top, " +
-    ".btn, " + // tutti i bottoni (Richiedi preventivo, Invia richiesta, cookie ecc.)
-    ".nav-links a, " + // link della navbar
-    ".whatsapp-float, " + // bottone WhatsApp flottante
-    ".reviews-arrow, " + // frecce del carosello
-    ".reviews-dot" // pallini del carosello
+    ".btn, " +                 // tutti i bottoni (Richiedi preventivo, Invia richiesta, cookie ecc.)
+    ".nav-links a, " +         // link della navbar
+    ".whatsapp-float, " +      // bottone WhatsApp flottante
+    ".reviews-arrow, " +       // frecce del carosello
+    ".reviews-dot"             // pallini del carosello
 );
 
 // Effetto anche su link contatti e link legali nel footer
 attachPressedFeedback(".contact-list a, .footer-legal a");
+
+// ⬅️ SICUREZZA EXTRA: se la pagina sta scrollando, togliamo qualsiasi "pressed"
+window.addEventListener("scroll", () => {
+  const pressedEls = document.querySelectorAll(".is-pressed");
+  if (!pressedEls.length) return;
+  pressedEls.forEach((el) => el.classList.remove("is-pressed"));
+});
