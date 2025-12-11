@@ -505,8 +505,15 @@ function attachPressedFeedback(selector) {
   });
 }
 
-// Applico l'effetto a social e freccia torna su
-attachPressedFeedback(".footer-social-icons a");
-attachPressedFeedback("#back-to-top");
+// Applico l'effetto "pressed" a tutti i click importanti
+attachPressedFeedback(
+  ".footer-social-icons a, " +
+  "#back-to-top, " +
+  ".btn, " +                 // tutti i bottoni (Richiedi preventivo, Invia richiesta, ecc.)
+  ".nav-links a, " +         // link della navbar
+  ".whatsapp-float, " +      // bottone WhatsApp flottante
+  ".reviews-arrow, " +       // frecce del carosello
+  ".reviews-dot"             // pallini del carosello
+);
 
 

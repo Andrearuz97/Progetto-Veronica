@@ -66,11 +66,6 @@ body {
   user-select: text;
 }
 
-/* margine per ancora con navbar sticky 
-section {
-  scroll-margin-top: 28px;
-}
-*/
 /* Offset giusto per scroll con header fisso (menu) */
 #home,
 #servizi,
@@ -82,10 +77,9 @@ section {
 #how-we-work,
 #about-us,
 #contacts,
-#reviews  {
-  scroll-margin-top: 45px;  /* prova questo, poi se vuoi lo alzi/abbassi */
+#reviews {
+  scroll-margin-top: 45px;
 }
-
 
 /* UTILITY */
 .container {
@@ -197,11 +191,6 @@ section {
   color: var(--muted);
   font-size: 0.95rem;
   transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--primary);
-  transform: translateY(-1px);
 }
 
 /* Link attivo in navbar (sezione corrente) */
@@ -390,19 +379,10 @@ section {
   box-shadow: var(--shadow-light);
 }
 
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-soft);
-}
-
 .btn-outline {
   background: transparent;
   color: var(--primary);
   border-color: rgba(212, 175, 55, 0.6);
-}
-
-.btn-outline:hover {
-  background: rgba(212, 175, 55, 0.08);
 }
 
 .btn-full {
@@ -430,12 +410,6 @@ section {
   transition: transform 0.15s ease, box-shadow 0.15s ease,
     border-color 0.15s ease;
   border: 1px solid rgba(212, 175, 55, 0.08);
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-soft);
-  border-color: rgba(212, 175, 55, 0.25);
 }
 
 .card-icon {
@@ -745,12 +719,6 @@ section {
   }
 }
 
-/* 🖐 Effetto click SEMPRE (desktop + mobile) */
-.footer-social-icons a:active {
-  opacity: 0.7;
-  transform: translateY(-2px);
-}
-
 .footer-legal {
   margin-top: 8px;
   font-size: 0.85rem;
@@ -1030,13 +998,6 @@ section {
     border-color 0.15s ease, background 0.15s ease;
 }
 
-.process-step:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-soft);
-  border-color: rgba(212, 175, 55, 0.25);
-  background: #14151d;
-}
-
 .process-icon {
   display: flex;
   align-items: center;
@@ -1177,7 +1138,7 @@ section {
 }
 
 .reviews-carousel .card:hover {
-  transform: none; /* niente translateY, così il bordo non viene tagliato */
+  transform: none;
   box-shadow: var(--shadow-soft);
   border-color: rgba(212, 175, 55, 0.25);
 }
@@ -1307,16 +1268,52 @@ button,
 .reviews-dot::-moz-focus-inner {
   border: 0 !important;
 }
-/* Stato "premuto" gestito via JS per mobile + desktop */
-.footer-social-icons a.is-pressed {
-  opacity: 0.7;
-  transform: translateY(-2px);
+
+/* 🔥 HOVER SOLO DESKTOP per nav, bottoni, card, step */
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover {
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-outline:hover {
+    background: rgba(212, 175, 55, 0.08);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(212, 175, 55, 0.25);
+  }
+
+  .process-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(212, 175, 55, 0.25);
+    background: #14151d;
+  }
 }
 
-/* Freccia torna su premuta (JS) */
+/* Stato "premuto" gestito via JS per mobile + desktop */
+.footer-social-icons a.is-pressed,
+.nav-links a.is-pressed,
+.btn.is-pressed,
+.whatsapp-float.is-pressed,
+.reviews-arrow.is-pressed,
+.reviews-dot.is-pressed,
+.back-to-top.is-pressed {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* stile extra solo per back-to-top quando premuto */
 .back-to-top.is-pressed {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: var(--bg);
   box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
-  transform: translateY(-1px);
 }
