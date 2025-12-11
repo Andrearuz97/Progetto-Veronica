@@ -1317,3 +1317,111 @@ button,
   color: var(--bg);
   box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
 }
+/* === EFFETTO "PREMUTO" UGUALE A FRECCIA + SOCIAL PER TUTTI === */
+
+/* Stato premuto per TUTTI gli elementi interattivi */
+.footer-social-icons a.is-pressed,
+.nav-links a.is-pressed,
+.btn.is-pressed,
+.whatsapp-float.is-pressed,
+.reviews-arrow.is-pressed,
+.reviews-dot.is-pressed,
+.back-to-top.is-pressed {
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
+
+/* Stile extra solo per back-to-top (come già usavi) */
+.back-to-top.is-pressed {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: var(--bg);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
+}
+
+/* 💻 Hover "figo" SOLO su desktop (mouse) per nav, bottoni, card, step, WA */
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover {
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-outline:hover {
+    background: rgba(212, 175, 55, 0.08);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(212, 175, 55, 0.25);
+  }
+
+  .process-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(212, 175, 55, 0.25);
+    background: #14151d;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 36px rgba(212, 175, 55, 0.5);
+    opacity: 0.9;
+  }
+
+  .contact-list a:hover {
+    color: var(--primary);
+  }
+
+  .footer-legal a:hover {
+    opacity: 1;
+  }
+}
+
+/* 📱 Su dispositivi touch: neutralizziamo gli hover (come per i social) */
+@media (hover: none), (pointer: coarse) {
+  .nav-links a:hover {
+    color: var(--muted);
+    transform: none;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+    box-shadow: var(--shadow-light);
+  }
+
+  .btn-outline:hover {
+    background: transparent;
+  }
+
+  .card:hover {
+    transform: none;
+    box-shadow: var(--shadow-light);
+    border-color: rgba(212, 175, 55, 0.08);
+  }
+
+  .process-step:hover {
+    transform: none;
+    box-shadow: var(--shadow-light);
+    border-color: rgba(212, 175, 55, 0.12);
+    background: var(--surface);
+  }
+
+  .whatsapp-float:hover {
+    transform: none;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+    opacity: 1;
+  }
+
+  .contact-list a:hover {
+    color: var(--text);
+  }
+
+  .footer-legal a:hover {
+    opacity: 0.8;
+  }
+}
